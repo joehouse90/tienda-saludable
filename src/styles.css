@@ -1,12 +1,13 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
+  background-color: #FAF3E0; /* Fondo beige suave */
   margin: 0;
   padding: 0;
+  color: #333333; /* Texto gris oscuro */
 }
 
 .navbar {
-  background-color: #4CAF50;
+  background-color: #6D8B74; /* Verde oliva suave */
   color: white;
   padding: 1rem;
   display: flex;
@@ -26,7 +27,7 @@ body {
 }
 
 .card {
-  background: white;
+  background: #ffffff; /* Blanco limpio para tarjetas */
   padding: 1rem;
   border-radius: 10px;
   width: 200px;
@@ -37,7 +38,7 @@ body {
 }
 
 button {
-  background: #4CAF50;
+  background: #F4A259; /* Naranja claro para botones */
   color: white;
   padding: 0.5rem;
   border: none;
@@ -46,26 +47,23 @@ button {
 }
 
 button:hover {
-  background: #388E3C;
+  background: #e4893d; /* Naranja más fuerte para hover */
 }
 
 .cart-modal {
   position: absolute;
   top: 70px;
   right: 10px;
-  background: #fff;
-  color: #333; /* 👈 Esto hace que el texto sea visible */
+  background: #ffffff;
+  color: #333333; /* Texto oscuro para legibilidad */
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 12px;
   width: 300px;
   z-index: 9999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
 }
-
-
-
-
 
 .alert-success {
   position: absolute;
@@ -84,3 +82,29 @@ button:hover {
   border-radius: 10px;
   margin-bottom: 10px;
 }
+
+.Toastify__toast--success {
+  background: #28a745;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+

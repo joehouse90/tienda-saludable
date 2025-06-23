@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 
 const NavBar = ({ cart, clearCart }) => {
   const [showCart, setShowCart] = useState(false)
@@ -7,7 +8,10 @@ const NavBar = ({ cart, clearCart }) => {
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0)
 
   const handlePay = () => {
-    alert(`Gracias por tu compra de $${total}! 🎩`)
+    toast.success(`🛒 ¡Compra realizada por ${total.toLocaleString('es-AR', {
+      style: 'currency',
+      currency: 'ARS'
+    })}! Gracias 🥳`)
     clearCart()
     setShowCart(false)
   }
@@ -15,7 +19,9 @@ const NavBar = ({ cart, clearCart }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success px-4 position-relative">
       <div className="container-fluid">
-        <a className="navbar-brand fw-bold" href="#">🥦 Mi Tienda Saludable</a>
+        <a className="navbar-brand fw-bold" href="#">
+          🥦 Mi Tienda Saludable
+        </a>
 
         <button
           className="navbar-toggler"
@@ -38,34 +44,42 @@ const NavBar = ({ cart, clearCart }) => {
               className="btn btn-outline-light btn-sm"
               onClick={() => setShowCart(!showCart)}
             >
-              🛒 {totalItems} productos - ${total}
+              🛒 {totalItems} productos - ${total.toLocaleString('es-AR')}
             </button>
 
             {showCart && (
-              <div className="cart-modal bg-white rounded shadow p-3 mt-2" style={{ width: '300px', position: 'absolute', right: 0, zIndex: 9999 }}>
-                <h5 className="mb-3"><i className="bi bi-cart-fill"></i> Carrito</h5>
-
+              <div className="cart-modal">
+                <h5>Carrito</h5>
                 {cart.length === 0 ? (
-                  <p className="text-muted">Tu carrito está vacío.</p>
+                  <p>Tu carrito está vacío.</p>
                 ) : (
                   <>
-                    <ul className="list-unstyled">
+                  
+                    <ul className="list-unstyled mb-2">
                       {cart.map((item) => (
-                        <li key={item.id} className="mb-3 border-bottom pb-2">
-                          <strong>{item.name}</strong> <br />
-                          Cantidad: {item.quantity} <br />
-                          Subtotal: ${item.price * item.quantity}
+                        <li key={item.id} className="mb-2 border-bottom pb-2">
+                          <strong>{item.name}</strong> x{item.quantity} <br />
+                          <small className="text-muted">
+                            Subtotal: {(item.price * item.quantity).toLocaleString('es-AR', {
+                              style: 'currency',
+                              currency: 'ARS'
+                            })}
+                          </small>
                         </li>
                       ))}
                     </ul>
-                    <div className="fw-bold fs-6 text-end border-top pt-2">
-                      Total: ${total}
-                    </div>
-                    <div className="d-flex justify-content-between mt-3">
+                    <p className="fw-bold">
+                      Total: {total.toLocaleString('es-AR', {
+                        style: 'currency',
+                        currency: 'ARS'
+                      })}
+                    </p>
+                    <div className="d-flex justify-content-between">
                       <button className="btn btn-success btn-sm" onClick={handlePay}>Pagar</button>
                       <button className="btn btn-danger btn-sm" onClick={clearCart}>Vaciar</button>
                     </div>
                   </>
+                  
                 )}
               </div>
             )}
@@ -77,5 +91,8 @@ const NavBar = ({ cart, clearCart }) => {
 }
 
 export default NavBar
+
+
+
 
 
