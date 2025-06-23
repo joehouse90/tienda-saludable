@@ -1,12 +1,52 @@
-# React + Vite
+# 🥦 CreaTuLanding1 - Simoes Daniel Joel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es parte de la **Entrega 1** del curso de **React JS** en **Coderhouse**. Se trata de una tienda saludable desarrollada con React, que incluye componentes reutilizables, navegación y un carrito funcional.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Componentes principales
 
-## Expanding the ESLint configuration
+- **NavBar**: Barra de navegación con logo, enlaces y el botón para mostrar el carrito.
+- **CartWidget**: Ícono del carrito con contador de productos.
+- **ItemListContainer**: Contenedor principal que recibe un saludo por `props` y despliega productos.
+- **App**: Componente raíz que maneja el estado global (carrito).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🎯 Funcionalidades implementadas
+
+- ✅ Agregar productos al carrito.
+- ✅ Ver cantidad total y precio dinámico.
+- ✅ Finalizar compra con notificación (`Toast`).
+- ✅ Filtro por categorías (visual).
+- ✅ Persistencia del carrito en `localStorage`.
+- ✅ Diseño responsive con Bootstrap 5.
+
+---
+
+## 🗂️ Estructura de carpetas
+
+
+
+src/
+├── assets/
+├── components/
+│ ├── NavBar.jsx
+│ ├── CartWidget.jsx
+│ └── ItemListContainer.jsx
+├── App.jsx
+├── main.jsx
+├── styles.css
+
+
+-
+
+## 🚀 Tecnologías utilizadas
+
+- ⚛️ React JS
+- 🎨 CSS personalizado
+- 💬 React Toastify
+- 🧩 Bootstrap 5
+- 💾 localStorage
+
+---
