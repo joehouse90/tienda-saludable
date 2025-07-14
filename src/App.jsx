@@ -1,60 +1,80 @@
-import React, { useState, useEffect } from 'react'
-import NavBar from './components/NavBar'
-import ItemListContainer from './components/ItemListContainer'
+import React, { useEffect, useState } from 'react'
+import { Routes, Route } from "react-router-dom"
+
+
+import NavBar              from './components/NavBar'
+import ItemListContainer   from './components/ItemListContainer'
+import ItemDetailContainer from './components/ItemDetailContainer'
+import NotFound            from './components/NotFound'
+
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
+  /* ---------- Carrito ---------- */
   const [cart, setCart] = useState([])
 
-  // Cargar carrito desde localStorage al iniciar
+  /* Persistencia en localStorage */
   useEffect(() => {
-    const savedCart = localStorage.getItem('cart')
-    if (savedCart) {
-      setCart(JSON.parse(savedCart))
-    }
+    const saved = localStorage.getItem('cart')
+    if (saved) setCart(JSON.parse(saved))
   }, [])
 
-  // Guardar carrito en localStorage cada vez que cambia
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
+  /* Agregar / limpiar */
   const addToCart = (product) => {
-    const existing = cart.find(item => item.id === product.id)
-    if (existing) {
-      setCart(cart.map(item =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      ))
-    } else {
-      setCart([...cart, { ...product, quantity: 1 }])
-    }
+    const existing = cart.find(i => i.id === product.id)
+    existing
+      ? setCart(cart.map(i =>
+          i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i))
+      : setCart([...cart, { ...product, quantity: 1 }])
   }
+  const clearCart = () => setCart([])
 
-  const clearCart = () => {
-    setCart([])
-  }
-
+  /* ---------- JSX ---------- */
   return (
     <>
       <NavBar cart={cart} clearCart={clearCart} />
-      <ItemListContainer
-        greeting="Bienvenido a nuestra tienda saludable 🍎"
-        addToCart={addToCart}
-      />
 
-      <ToastContainer
-        position="top-right"
-        autoClose={2500}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        theme="colored"
-      />
+      {/* Rutas ‑ React Router */}
+      <Routes>
+        {/* Catálogo completo */}
+        <Route
+          path="/"
+          element={
+            <ItemListContainer
+              greeting="Bienvenido a nuestra tienda saludable 🥦"
+              addToCart={addToCart}
+            />
+          }
+        />
+
+        {/* Catálogo por categoría */}
+        <Route
+          path="/category/:categoryId"
+          element={<ItemListContainer addToCart={addToCart} />}
+        />
+
+        {/* Detalle de producto */}
+        <Route
+          path="/item/:id"
+          element={<ItemDetailContainer addToCart={addToCart} />}
+        />
+
+        {/* 404 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+
+      {/* Toast global */}
+      <ToastContainer position="top-right" autoClose={2500} theme="colored" />
     </>
   )
 }
 
 export default App
+
 
 
