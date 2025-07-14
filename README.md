@@ -56,7 +56,8 @@ src/
 
 > 🎥 A continuación se muestra la navegación entre rutas: listado general, filtrado por categoría y vista en detalle de un producto.
 
-![Demo navegación](/demo.gif)
+![Demo navegación](demo.gif)
+
 
 
 
