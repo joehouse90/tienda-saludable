@@ -1,12 +1,9 @@
 // src/components/NavBar.jsx
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import CartWidget from './CartWidget'
 
 const NavBar = ({ cart, clearCart }) => {
-  const [showCart, setShowCart] = useState(false)
-
-  /* 👉 Categorías para el menú */
   const categories = [
     'Frutas',
     'Frutos Secos',
@@ -18,16 +15,8 @@ const NavBar = ({ cart, clearCart }) => {
     'Infusiones'
   ]
 
-  /* 👉 Totales del carrito */
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0)
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
-
-  /* 👉 Pagar (simulado) */
-  const handlePay = () => {
-    toast.success(`🛒 ¡Compra realizada por $${totalPrice.toLocaleString('es-AR')}!`)
-    clearCart()
-    setShowCart(false)
-  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success shadow-sm position-relative">
@@ -64,72 +53,16 @@ const NavBar = ({ cart, clearCart }) => {
             ))}
           </ul>
 
-          {/* Botón carrito */}
-          <button
-            className="btn btn-outline-light btn-sm"
-            onClick={() => setShowCart(!showCart)}
-          >
-            🛒 {totalItems} &nbsp;-&nbsp; $
-            {totalPrice.toLocaleString('es-AR')}
-          </button>
+          {/* Carrito */}
+          <CartWidget cart={cart} clearCart={clearCart} />
         </div>
-
-        {/* Modal carrito */}
-        {showCart && (
-          <div className="cart-modal">
-            <h5 className="mb-3">Carrito</h5>
-
-            {cart.length === 0 ? (
-              <p>Tu carrito está vacío.</p>
-            ) : (
-              <>
-                <ul className="list-group mb-3">
-                  {cart.map(item => (
-                    <li
-                      key={item.id}
-                      className="list-group-item d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        <span className="fw-semibold">{item.name}</span>
-                        <span className="badge bg-secondary ms-2">
-                          x{item.quantity}
-                        </span>
-                        <br />
-                        <small className="text-muted">
-                          Subtotal: $
-                          {(item.price * item.quantity).toLocaleString('es-AR')}
-                        </small>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-
-                <p className="fw-bold text-end mb-3">
-                  Total:&nbsp;$
-                  {totalPrice.toLocaleString('es-AR')}
-                </p>
-
-                <div className="d-flex justify-content-between">
-                  <button className="btn btn-success btn-sm" onClick={handlePay}>
-                    Pagar
-                  </button>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={clearCart}
-                  >
-                    Vaciar
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        )}
       </div>
     </nav>
   )
 }
 
 export default NavBar
+
 
 
 

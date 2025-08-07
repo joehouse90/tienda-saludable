@@ -9,22 +9,19 @@ const ItemDetail = ({ product, addToCart }) => {
       <div className="row justify-content-center align-items-center">
         <div className="col-md-5 text-center">
           <img
-            src={product.image}
-            alt={product.name}
+            src={`${import.meta.env.BASE_URL}${product.image}`}
+            alt={product.title}
             className="img-fluid rounded shadow"
             style={{ maxHeight: '300px', objectFit: 'contain' }}
           />
         </div>
         <div className="col-md-6">
-          <h2 className="fw-bold">{product.name}</h2>
+          <h2 className="fw-bold">{product.title}</h2>
           <p className="text-success fw-bold fs-4">${product.price}</p>
-          <p className="text-muted">
-            Producto saludable de excelente calidad. Ideal para una alimentación consciente y nutritiva. 🌿
-          </p>
+          <p className="text-muted">{product.description}</p>
 
-          {/* Componente con contador de cantidad */}
           <ItemCount
-            stock={10}
+            stock={product.stock}
             initial={1}
             onAdd={(cantidad) => addToCart({ ...product, quantity: cantidad })}
           />
@@ -35,6 +32,8 @@ const ItemDetail = ({ product, addToCart }) => {
 }
 
 export default ItemDetail
+
+
 
 
 
