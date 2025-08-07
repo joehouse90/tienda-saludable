@@ -1,7 +1,8 @@
 # 🥦 Tienda Saludable - Simoes Daniel Joel
 
 Este proyecto corresponde al **Trabajo Final** del curso de **React JS** en **Coderhouse**.  
-Se trata de una tienda online de productos saludables desarrollada con **React**, que obtiene datos desde **Firebase Firestore** y permite una experiencia de compra completa: navegación por categorías, detalle de productos, carrito global y generación de órdenes.
+Se trata de una tienda online de productos saludables desarrollada con **React**, que obtiene datos desde **Firebase Firestore** y permite una experiencia de compra completa: navegación por categorías, detalle de productos, carrito global y generación de órdenes.  
+El proyecto fue desarrollado utilizando **Vite**, **React Router**, **Context API**, **Bootstrap 5** y **Firebase**.
 
 ---
 
@@ -45,33 +46,37 @@ Se trata de una tienda online de productos saludables desarrollada con **React**
 
 ## 🗂️ Estructura del proyecto
 
-src/
-├── components/
-│ ├── CartWidget.jsx
-│ ├── Item.jsx
-│ ├── ItemCount.jsx
-│ ├── ItemDetail.jsx
-│ ├── ItemDetailContainer.jsx
-│ ├── ItemList.jsx
-│ ├── ItemListContainer.jsx
-│ ├── NavBar.jsx
-│ ├── NotFound.jsx
-│
-├── context/
-│ └── CartContext.jsx
-│
-├── App.jsx
-├── main.jsx
-├── firebaseConfig.js
-├── styles.css
+mi-tienda-saludable/
+├── public/
+│ └── img/
+│ ├── product_1.png
+│ ├── product_2.png
+│ └── ...
+├── src/
+│ ├── components/
+│ │ ├── CartWidget.jsx
+│ │ ├── Item.jsx
+│ │ ├── ItemCount.jsx
+│ │ ├── ItemDetail.jsx
+│ │ ├── ItemDetailContainer.jsx
+│ │ ├── ItemList.jsx
+│ │ ├── ItemListContainer.jsx
+│ │ ├── NavBar.jsx
+│ │ └── NotFound.jsx
+│ ├── context/
+│ │ └── CartContext.jsx
+│ ├── App.jsx
+│ ├── main.jsx
+│ ├── styles.css
+│ └── firebaseConfig.js
+├── demo.gif
+├── index.html
+├── vite.config.js
+├── .gitignore
+├── package.json
+└── README.md
 
-public/
-└── img/
-├── product_1.png
-├── product_2.png
-└── ...
 
----
 
 ## 🔍 GIF de navegación
 
