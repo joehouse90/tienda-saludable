@@ -17,7 +17,7 @@ import { CartProvider } from './context/CartContext' // ✅ Importá el Provider
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/tienda-saludable">
+    <BrowserRouter>
       <CartProvider> {/* ✅ Envolvé App con el contexto */}
         <App />
       </CartProvider>
